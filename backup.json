@@ -1,0 +1,55 @@
+[
+    {
+        "name": "Text Channels",
+        "channels": [
+            {
+                "name": "general",
+                "type": "text"
+            }
+        ]
+    },
+    {
+        "name": "Voice Channels",
+        "channels": [
+            {
+                "name": "general",
+                "type": "text"
+            }
+        ]
+    },
+    {
+        "name": "Account Information",
+        "channels": [
+            {
+                "name": "\ud83d\udd12password-resets",
+                "type": "text"
+            }
+        ]
+    },
+    {
+        "name": "Staffing Area",
+        "channels": [
+            {
+                "name": "check-suspension",
+                "type": "text"
+            },
+            {
+                "name": "check-ban",
+                "type": "text"
+            },
+            {
+                "name": "lookup",
+                "type": "text"
+            }
+        ]
+    },
+    {
+        "name": "Emergency",
+        "channels": [
+            {
+                "name": "s-o-s",
+                "type": "text"
+            }
+        ]
+    }
+]

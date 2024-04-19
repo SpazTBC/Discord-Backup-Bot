@@ -1,0 +1,12 @@
+Text Channels - category
+Voice Channels - category
+general - text
+General - voice
+Account Information - category
+🔒password-resets - text
+Staffing Area - category
+lookup - text
+Emergency - category
+s-o-s - text
+check-ban - text
+check-suspension - text

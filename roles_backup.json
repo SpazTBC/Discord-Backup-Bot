@@ -1,0 +1,41 @@
+[
+    {
+        "name": "Customer",
+        "color": 3447003,
+        "permissions": 0,
+        "members": [],
+        "hoist": true
+    },
+    {
+        "name": "Employee",
+        "color": 8447,
+        "permissions": 0,
+        "members": [],
+        "hoist": true
+    },
+    {
+        "name": "Support Staff",
+        "color": 15844367,
+        "permissions": 0,
+        "members": [],
+        "hoist": true
+    },
+    {
+        "name": "Management",
+        "color": 16711680,
+        "permissions": 0,
+        "members": [
+            680620023600906342
+        ],
+        "hoist": true
+    },
+    {
+        "name": "GreenCar",
+        "color": 3066993,
+        "permissions": 8,
+        "members": [
+            1225527361890684969
+        ],
+        "hoist": true
+    }
+]
