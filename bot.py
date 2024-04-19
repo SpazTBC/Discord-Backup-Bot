@@ -16,7 +16,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 # Specify the API endpoint
 API_ENDPOINT = "http://localhost:5000/api"
 
-# Set to True if you want to send logs and JSON files to the API
+# Set to True if you want to send logs and JSON files to the API, Turn To False If You Don't Wish to use this.
 send_to_api = True
 
 # Create bot instance with intents
@@ -46,7 +46,7 @@ async def send_data_to_api(guild_id):
                 print(f"Failed to send data to API. Status code: {response.status_code}")
         except Exception as e:
             print(f"An error occurred while sending data to API: {e}")
-        await asyncio.sleep(25)
+        await asyncio.sleep(25) #Change this to how many seconds you want this to send
 
 
 
