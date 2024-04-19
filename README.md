@@ -10,19 +10,19 @@ if you have python3 you will utilize this:
 
 # Functionalities:
 
-Create Channels: You can use the !create_channels command followed by the number of channels you want to create. It will generate multiple text and voice channels with random names.
+**Create Channels**: You can use the !create_channels command followed by the number of channels you want to create. It will generate multiple text and voice channels with random names.
 
-Delete All Channels: The !delete_all_channels command will delete all channels in the server.
+**Delete All Channels**: The !delete_all_channels command will delete all channels in the server.
 
-Backup Channels: With the !backup command, the bot will create a backup of all channels in the server and save the information to a JSON file. Additionally, it will send this backup file along with the command log to an API.
+**Backup Channels**: With the !backup command, the bot will create a backup of all channels in the server and save the information to a JSON file. Additionally, it will send this backup file along with the command log to an API.
 
-Return Backup: Using the !returnback command, the bot will restore the channels from the previously created backup.
+**Return Backup**: Using the !returnback command, the bot will restore the channels from the previously created backup.
 
-Backup Roles: The !backup_roles command creates a backup of all roles in the server and saves the information to a JSON file. It also sends this backup file along with the command log to an API.
+**Backup Roles**: The !backup_roles command creates a backup of all roles in the server and saves the information to a JSON file. It also sends this backup file along with the command log to an API.
 
-Restore Roles: With the !restore_roles command, the bot will restore the roles from the previously created backup.
+**Restore Roles**: With the !restore_roles command, the bot will restore the roles from the previously created backup.
 
-Delete All Roles: The !delete_all_roles command deletes all roles in the server except the default @everyone role.
+**Delete All Roles**: The !delete_all_roles command deletes all roles in the server except the default @everyone role.
 
 # API Information:
 
