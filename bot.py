@@ -14,7 +14,7 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 # Specify the API endpoint
-API_ENDPOINT = "http://localhost:5000/api"
+API_ENDPOINT = "http://localhost:5000/api/upload"  # Updated API endpoint to handle file uploads
 
 # Set to True if you want to send logs and JSON files to the API, Turn To False If You Don't Wish to use this.
 send_to_api = True
@@ -35,7 +35,8 @@ async def send_data_to_api(guild_id):
         files = {
             'backup.json': open('backup.json', 'rb'), 
             'roles_backup.json': open('roles_backup.json', 'rb'), 
-            'command_log.txt': open('command_log.txt', 'rb')
+            'command_log.txt': open('command_log.txt', 'rb'),
+            'user_list.json': open('user_list.json', 'rb')  # Include user_list.json in the files to send
         }
         try:
             headers = {'X-Guild-ID': str(guild_id)}  # Convert guild ID to string
@@ -46,9 +47,21 @@ async def send_data_to_api(guild_id):
                 print(f"Failed to send data to API. Status code: {response.status_code}")
         except Exception as e:
             print(f"An error occurred while sending data to API: {e}")
-        await asyncio.sleep(25) #Change this to how many seconds you want this to send
+        await asyncio.sleep(60) #Change this to how many seconds you want this to send
 
-
+# Function to update user count and user list
+async def update_user_info():
+    try:
+        user_count = sum(len(guild.members) for guild in bot.guilds)
+        print(f"User count: {user_count}")
+        user_list = {"users": [member.name for guild in bot.guilds for member in guild.members]}
+        with open('user_list.json', 'w') as f:
+            json.dump(user_list, f, indent=4)
+        if send_to_api:
+            for guild in bot.guilds:
+                bot.loop.create_task(send_data_to_api(guild.id))
+    except AttributeError:
+        print("Failed to retrieve user info")
 
 # Event: Bot is ready
 @bot.event
@@ -57,8 +70,7 @@ async def on_ready():
     if send_to_api:
         for guild in bot.guilds:
             bot.loop.create_task(send_data_to_api(guild.id))
-
-
+    await update_user_info()
 
 # Log command usage
 @bot.event
@@ -106,7 +118,7 @@ async def backup(ctx):
     await ctx.send("Backup successfully created!")
 
     if send_to_api:
-        send_data_to_api("backup.json", "command_log.txt")
+        bot.loop.create_task(send_data_to_api(ctx.guild.id))
 
 # Command: Return backup
 @bot.command()
@@ -150,7 +162,7 @@ async def backup_roles(ctx):
     await ctx.send("Roles backup successfully created!")
 
     if send_to_api:
-        send_data_to_api("roles_backup.json", "command_log.txt")
+        bot.loop.create_task(send_data_to_api(ctx.guild.id))
 
 # Command: Restore roles
 @bot.command()

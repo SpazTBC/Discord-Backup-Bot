@@ -7,3 +7,9 @@ Command executed: !backup_roles
 Command executed: !create_channels 5
 Command executed: !delete_all_channels
 Command executed: !returnback
+Command executed: !backup
+Command executed: !backup
+Command executed: !backup
+Command executed: !backup
+Command executed: !backup
+Command executed: !backup
