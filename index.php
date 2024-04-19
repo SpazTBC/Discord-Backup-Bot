@@ -54,23 +54,30 @@
         }
 
         // API endpoints
-        $backup_status_url = "http://localhost:5000/api/backup/status";
         $backup_count_url = "http://localhost:5000/api/backup/count";
         $user_count_url = "http://localhost:5000/api/user/count";
         $user_list_url = "http://localhost:5000/api/user/list";
 
         // Fetch data from API
-        $backup_status = fetch_data_from_api($backup_status_url);
         $backup_count = fetch_data_from_api($backup_count_url);
         $user_count = fetch_data_from_api($user_count_url);
         $user_list = fetch_data_from_api($user_list_url);
+        ?>
+<div id="statusContainer">
+    <?php
+    // Fetch initial backup status
+    $initial_backup_status = fetch_data_from_api("http://localhost:5000/api/backup/status");
+    // Determine initial status message
+    $status_message = ($initial_backup_status === 'pending') ? 'Backup Pending' : 'Backup Completed';
+    // Display initial backup status
+    echo "<div class='status " . ($status_message === 'Backup Pending' ? 'pending' : '') . "'>";
+    echo "<h2>Backup Status</h2>";
+    echo "<p>" . $status_message . "</p>";
+    echo "</div>";
+    ?>
+</div>
 
-        // Display backup status
-        echo "<div class='status " . ($backup_status['status'] === 'pending' ? 'pending' : '') . "'>";
-        echo "<h2>Backup Status</h2>";
-        echo "<p>" . ($backup_status['status'] === 'pending' ? 'Backup Pending' : 'Backup Completed') . "</p>";
-        echo "</div>";
-
+        <?php
         // Display backup count
         echo "<div class='status'>";
         echo "<h2>Backup Count</h2>";
@@ -94,5 +101,35 @@
         echo "</div>";
         ?>
     </div>
+    <script>
+    // Function to fetch data from the API
+    function fetchDataFromApi(url) {
+        return fetch(url)
+            .then(response => response.json())
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Function to update the backup status
+    function updateBackupStatus() {
+        fetchDataFromApi("http://localhost:5000/api/backup/status")
+            .then(data => {
+                const statusContainer = document.getElementById("statusContainer");
+                // Determine status message based on fetched data
+                const statusMessage = data.status === 'pending' ? 'Backup Pending' : 'Backup Completed';
+                // Update status container HTML
+                statusContainer.innerHTML = `
+                    <div class="status ${data.status}">
+                        <h2>Backup Status</h2>
+                        <p>${statusMessage}</p>
+                    </div>`;
+            });
+    }
+
+    // Update dashboard initially and then every 5 seconds
+    updateBackupStatus();
+    setInterval(updateBackupStatus, 5000); // Update every 5 seconds
+</script>
+
+
 </body>
 </html>
