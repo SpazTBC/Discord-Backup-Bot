@@ -1,12 +1,12 @@
 # Installation:
 If you have python you will utilize this:
 
-pip install -r requirements.txt
+**pip install -r requirements.txt**
 
 
 if you have python3 you will utilize this:
 
-pip3 install -r requirements.txt
+**pip3 install -r requirements.txt**
 
 # Functionalities:
 
