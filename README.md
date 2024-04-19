@@ -1,3 +1,13 @@
+# Installation:
+If you have python you will utilize this:
+
+pip install -r requirements.txt
+
+
+if you have python3 you will utilize this:
+
+pip3 install -r requirements.txt
+
 # Functionalities:
 
 Create Channels: You can use the !create_channels command followed by the number of channels you want to create. It will generate multiple text and voice channels with random names.
