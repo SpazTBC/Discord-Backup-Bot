@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify, abort
 import os
 import json
+import threading
+import time
 
 app = Flask(__name__)
 
@@ -109,6 +111,23 @@ def get_user_list_route():
         abort(400, 'Guild ID not provided')
     user_list = get_user_list(guild_id)
     return jsonify({'users': user_list})
+
+
+# List to store pending requests
+pending_requests = []
+
+# Route to get pending requests
+@app.route('/api/pending-requests', methods=['GET'])
+def get_pending_requests():
+    global pending_requests
+    if request.method == 'POST':
+        pending_requests.append(request.json)  # Assuming JSON data is sent in POST requests
+        return jsonify({'message': 'Request received and added to pending list'}), 200
+    else:
+        if pending_requests:
+            return jsonify({'pending_requests': pending_requests}), 200
+        else:
+            return '', 200
 
 
 if __name__ == '__main__':
